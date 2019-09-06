@@ -1,7 +1,9 @@
 body{
   background-color: darkblue;
 }
-
+p{
+  color: aliceblue;
+}
 
 #Ejercicio1{
   display: grid;
