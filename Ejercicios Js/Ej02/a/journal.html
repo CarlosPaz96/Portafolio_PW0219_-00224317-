@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <title>Journal</title>
+    <script src="JS/script.js"></script>
+</head>
+<body>
+    <div class="container">
+            <br>
+            <form action="">
+                <h1>
+                    Journal
+                </h1>
+
+                <div class="form-group">
+                    <label for="event">Seleccione evento:</label>
+                    <select name="event" class="form-control" id="event_field">
+                        <option>Comer</option>
+                        <option>Beber</option>
+                        <option>Dormir</option>
+                        
+                        <option>Jugar</option>
+                        <option>Estudiar</option>
+                    
+                        <option>Pelear</option>
+                        <option>Charlar</option>
+                        
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Dia</label>
+                    <input class="form-control" type="date" name="date" id="date_field">
+                </div>
+
+                <div class="form-group">
+                        <label for="time">Hora</label>
+                        <input type="time"  id="time_field" name="time">
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="accident_switch">
+                        <label class="custom-control-label" for="accident_switch">-Accidente.</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" id="submit_btn" >Ingresar</button>
+                </div>
+            </form>
+
+            <hr>
+
+            <section>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-dark">
+                            <th>Dia:</th>
+                            <th>Hora</th>
+                            <th>Evento</th>
+                            <th>accidente:</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+</body>
+</html>
