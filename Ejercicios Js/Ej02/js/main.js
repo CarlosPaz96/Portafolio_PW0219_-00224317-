@@ -10,32 +10,40 @@ window.onload = function () {
 
 
     let add_Evento = (fechas, horas, descripciones, fotos) => {
-
+        let NuevaDesc = [];
         let nuevaFila = document.createElement("tr");
 
         nuevaFila.classList.add("table-active");
+        
+        for (let i = 0; i < descripciones.length; i++) {
+            let n = i+1;
+            NuevaDesc[i] = n + ") "+descripciones[i];
+          
+        }
 
         nuevaFila.innerHTML = `<td><center>${fechas}</center></td>
         <td><center>${horas}</center></td>
-        <td><center>${descripciones}</center></td>
+        <td><center>${NuevaDesc}</center></td>
         <td><center>${fotos}</center></td>`
 
         tbody.appendChild(nuevaFila);
     }
     btn_Ingresar.addEventListener("click", function () {
-        let fDate = fecha_get.value;
-        let hhour = hora_get.value;
-        let descc = comentario_get.value;
-        let imgg = archivo_get.value;
+        let fDate = fecha_get.value,
+            hhour = hora_get.value,
+            descc = comentario_get.value,
+            separador = ",",
+            descc_guardado = descc.split(separador),
+            imgg = archivo_get.value;
+            console.log(descc.split(separador));
         
-
         if (imgg === '') {
             imgg = "no hay foto";
         }
 
-        add_Evento(fDate, hhour, descc, imgg);
-        
-       
+        add_Evento(fDate, hhour, descc_guardado, imgg);
+
+
     })
 
 }
