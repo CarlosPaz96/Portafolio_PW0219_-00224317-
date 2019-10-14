@@ -1,64 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+window.onload = function () {
+    let fecha_get = document.querySelector("#fecha_field");
+    let hora_get = document.querySelector("#hora_field");
+    let comentario_get = document.querySelector("#com_field");
+    let tbody = document.querySelector("#table_body");
+    let btn_Ingresar = document.querySelector("#ingresar_btn");
+    let archivo_get = document.querySelector("#img_InputFile");
+    let archivoRuta = archivo_get.value;
+    let cadena = [];//aqui se guardan las cadenas de texto
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <title>Ejercicio02</title>
-    <script src="/js/main.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <br>
-        <div class="jumbotron">
-            <h1>Registro de Eventos.</h1><br>
-
-            <div class="form-group">
-                <label for="fecha">Fecha:</label>
-                <input type="date" name="date" id="fecha_field">
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora_field" name="time">
-            </div>
-
-
-            <div class="form-group">
-                <label for="Comentario">Ingrese Comentario: </label><br>
-                <textarea name="comentarios" id="com_field" placeholder="Escribe tu comentario, si desea guardar mas de una actividad solo separela por una ',' (coma)"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputFile">Seleccion de fotos:</label>
-                <input type="file" class="form-control-file" id="img_InputFile" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">Seleccione una imagen representativa.</small>
-            </div>
-
-
-            <div class="form-group">
-                <button type="button" class="btn btn-outline-danger" id="ingresar_btn">Ingresar</button>
-            </div>
-        </div>
-
-        <hr>
-
-        <section>
-            <table class="table table-hover">
-                <thead>
-                    <tr class="table-dark">
-                        <th scope="col">Fecha</th>
-                        <th scope="col" id="hhh">Hora</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">foto</th>
-                    </tr>
-                </thead>
-                <tbody id="table_body">
-
-                </tbody>
-            </table>
-        </section>
-    </div>
-</body>
-
-</html>
+    let add_Evento = (fechas, horas, descripciones, fotos) => {
+        let nuevaFila = document.createElement("tr");
+        nuevaFila.classList.add("table-active");
+        nuevaFila.innerHTML = `<td><center>${fechas}</center></td>
+        <td id = 'hhh'><center>${horas}</center></td>
+        <td><center>${descripciones}</center></td>
+        <td><center>${fotos}</center></td>`
+        tbody.appendChild(nuevaFila);
+    }
+    btn_Ingresar.addEventListener("click", function () {
+        let fDate = fecha_get.value,
+            hhour = hora_get.value,
+            descc = comentario_get.value,
+            separador = ",",
+            descc_guardado = descc.split(separador),
+            imgg = archivo_get.value;
+        cadena = descc_guardado;
+        console.log(cadena);
+        console.log(fDate);
+        console.log(hhour);
+        if (fDate === "") {
+            alert("La fecha ingresada no es valida");
+        } else {
+            if (hhour === "") {
+                alert("La hora Ingresada no es valida")
+            } else {
+                if (descc_guardado[0] === "") {
+                    alert("No hay nada en el comentario");
+                } else {
+                    if (imgg === '') {
+                        imgg = "no hay foto";
+                        add_Evento(fDate, hhour, descc_guardado, imgg);
+                    } else {
+                        //imgg = archivo_get.value;
+                        add_Evento(fDate, hhour, descc_guardado, imgg);
+                    }
+                }
+            }
+        }
+    })
+}
