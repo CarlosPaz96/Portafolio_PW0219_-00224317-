@@ -16,6 +16,7 @@ let printArray = () => {
     
 
     let celda = document.createElement("td");
+    let celda2 = document.createElement("td");
     let btnEliminar = document.createElement("button");
     let confirmCarnet = document.createElement("input")
 
@@ -39,12 +40,7 @@ let printArray = () => {
 
     confirmCarnet.className ="form-control";
     confirmCarnet.type = "text";
-    confirmCarnet.value = serial;
-
-
-
-
-
+    
 
     btnEliminar.addEventListener("click", event => {
       let id_actual = event.target.value;
@@ -57,9 +53,16 @@ let printArray = () => {
       });
     });
 
+    celda2.appendChild(confirmCarnet);
+    new_row.appendChild(celda2);
+    tbody.appendChild(new_row);
+
     celda.appendChild(btnEliminar);
     new_row.appendChild(celda);
     tbody.appendChild(new_row);
+
+    
+
   });
 };
 
