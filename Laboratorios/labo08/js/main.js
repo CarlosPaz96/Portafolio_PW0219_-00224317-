@@ -13,7 +13,7 @@ let printArray = () => {
 
   student_list.forEach(elem => {
     let new_row = document.createElement("tr");
-    
+
 
     let celda = document.createElement("td");
     let celda2 = document.createElement("td");
@@ -38,19 +38,23 @@ let printArray = () => {
     * personalizando input
     */
 
-    confirmCarnet.className ="form-control";
+    confirmCarnet.className = "form-control";
     confirmCarnet.type = "text";
-    
+
 
     btnEliminar.addEventListener("click", event => {
       let id_actual = event.target.value;
 
-      student_list.forEach((elem, pos) => {
-        if (id_actual == elem.id) {
-          student_list.splice(pos, 1);
-          printArray();
-        }
-      });
+      if (confirmCarnet.value === elem.carnet) {
+        student_list.forEach((elem, pos) => {
+          if (id_actual == elem.id) {
+            student_list.splice(pos, 1);
+            printArray();
+          }
+        });
+      }else{
+        alert ("colocar el mismo carnet para confirmar eliminar");
+      }
     });
 
     celda2.appendChild(confirmCarnet);
@@ -61,37 +65,37 @@ let printArray = () => {
     new_row.appendChild(celda);
     tbody.appendChild(new_row);
 
-    
+
 
   });
 };
 
 let add_student = (carnet, schedule, late) => {
   let dateTime = new Date();
-    student_list.push({
-        id: serial,
-        carnet: carnet,
-        horario: schedule,
-        tarde: late,
-        horaIngreso : dateTime
-      });
-      serial++;
+  student_list.push({
+    id: serial,
+    carnet: carnet,
+    horario: schedule,
+    tarde: late,
+    horaIngreso: dateTime
+  });
+  serial++;
 };
 
 
 let parseLateSwitch = (value) => {
   if (value) {
     return "Tardisimo";
-  }else
+  } else
 
     return "A tiempo";
-  
+
 };
 
 submit_btn.addEventListener("click", () => {
-  
+
   let carnet = carnet_field.value;
-  let schedule =schedule_dropdown.options[schedule_dropdown.selectedIndex].text;
+  let schedule = schedule_dropdown.options[schedule_dropdown.selectedIndex].text;
   let late = parseLateSwitch(lete_switch.checked);
 
   if (carnet_regex.test(carnet)) {
@@ -113,5 +117,6 @@ carnet_field.addEventListener("keyup", event => {
     submit_btn.disabled = false;
   } else {
     submit_btn.disabled = true;
+
   }
 });
